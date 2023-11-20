@@ -1,0 +1,491 @@
+////Задание 1
+////Запрограммируйте класс Money (объект класса оперирует одной валютой) для работы с деньгами.
+////В классе должны быть предусмотрены поле для хранения целой части денег (доллары, евро, гривны и т.д.) и поле
+////для хранения копеек (центы, евроценты, копейки и т.д.).
+////Реализовать методы для вывода суммы на экран, задания значений для частей.
+////На базе класса Money создать класс Product для работы
+////с продуктом или товаром. Реализовать метод, позволяющий уменьшить цену на заданное число.
+////Для каждого из классов реализовать необходимые
+////методы и поля.
+
+
+
+
+
+
+
+//using System;
+
+//class Money
+//{
+//    private int dollars;
+//    private int cents;
+
+//    public Money(int dollars, int cents)
+//    {
+//        this.dollars = dollars;
+//        this.cents = cents;
+//    }
+
+//    public void Display()
+//    {
+//        Console.WriteLine($"Money: {dollars} dollars and {cents} cents");
+//    }
+
+//    public void SetMoney(int dollars, int cents)
+//    {
+//        this.dollars = dollars;
+//        this.cents = cents;
+//    }
+
+//    public void ReduceMoney(int reduceDollars, int reduceCents)
+//    {
+//        if (dollars >= reduceDollars && cents >= reduceCents)
+//        {
+//            dollars -= reduceDollars;
+//            cents -= reduceCents;
+//        }
+//        else
+//        {
+//            Console.WriteLine("Cannot reduce money by that amount.");
+//        }
+//    }
+//}
+
+//class Product
+//{
+//    private string name;
+//    private Money price;
+
+//    public Product(string name, Money price)
+//    {
+//        this.name = name;
+//        this.price = price;
+//    }
+
+//    public void Display()
+//    {
+//        Console.WriteLine($"Product: {name}, Price:");
+//        price.Display();
+//    }
+
+//    public void ReducePrice(int reduceDollars, int reduceCents)
+//    {
+//        price.ReduceMoney(reduceDollars, reduceCents);
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Money money = new Money(50, 75);
+//        Product product = new Product("Book", new Money(20, 50));
+
+//        while (true)
+//        {
+//            Console.WriteLine("Menu:");
+//            Console.WriteLine("1. Display Money");
+//            Console.WriteLine("2. Set Money");
+//            Console.WriteLine("3. Reduce Money");
+//            Console.WriteLine("4. Display Product");
+//            Console.WriteLine("5. Reduce Product Price");
+//            Console.Write("Enter your choice: ");
+
+//            if (int.TryParse(Console.ReadLine(), out int choice))
+//            {
+//                switch (choice)
+//                {
+//                    case 1:
+//                        money.Display();
+//                        break;
+//                    case 2:
+//                        Console.Write("Enter dollars: ");
+//                        int newDollars = int.Parse(Console.ReadLine());
+//                        Console.Write("Enter cents: ");
+//                        int newCents = int.Parse(Console.ReadLine());
+//                        money.SetMoney(newDollars, newCents);
+//                        break;
+//                    case 3:
+//                        Console.Write("Enter dollars to reduce: ");
+//                        int reduceDollars = int.Parse(Console.ReadLine());
+//                        Console.Write("Enter cents to reduce: ");
+//                        int reduceCents = int.Parse(Console.ReadLine());
+//                        money.ReduceMoney(reduceDollars, reduceCents);
+//                        break;
+//                    case 4:
+//                        product.Display();
+//                        break;
+//                    case 5:
+//                        Console.Write("Enter dollars to reduce from product price: ");
+//                        int reduceProductDollars = int.Parse(Console.ReadLine());
+//                        Console.Write("Enter cents to reduce from product price: ");
+//                        int reduceProductCents = int.Parse(Console.ReadLine());
+//                        product.ReducePrice(reduceProductDollars, reduceProductCents);
+//                        break;
+//                    default:
+//                        Console.WriteLine("Invalid choice. Please enter a valid option.");
+//                        break;
+//                }
+//            }
+//            else
+//            {
+//                Console.WriteLine("Invalid input. Please enter a numeric choice.");
+//            }
+//        }
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+////Задание 2
+////Создать базовый класс «Устройство» и производные
+////классы «Чайник», «Микроволновка», «Автомобиль», «Пароход». С помощью конструктора установить имя каждого
+////устройства и его характеристики.
+////Реализуйте для каждого из классов методы:
+////■ Sound — издает звук устройства (пишем текстом в
+////консоль);
+////Show — отображает название устройства;
+////Desc — отображает описание устройства.
+
+//using System;
+
+//class Device
+//{
+//    private string name;
+
+//    public Device(string name)
+//    {
+//        this.name = name;
+//    }
+
+//    public virtual void Sound()
+//    {
+//        Console.WriteLine($"{name} makes a sound.");
+//    }
+
+//    public void Show()
+//    {
+//        Console.WriteLine($"Device Name: {name}");
+//    }
+
+//    public virtual void Desc()
+//    {
+//        Console.WriteLine($"Device Description: Generic device");
+//    }
+//}
+
+//class Kettle : Device
+//{
+//    public Kettle(string name, string characteristics) : base(name)
+//    {
+//        Characteristics = characteristics;
+//    }
+
+//    public string Characteristics { get; }
+
+//    public override void Sound()
+//    {
+//        Console.WriteLine($"{Characteristics} kettle whiostles.");
+//    }
+
+//    public override void Desc()
+//    {
+//        Console.WriteLine($"Device Description: {Characteristics} keettle.");
+//    }
+//}
+
+//class Microwave : Device
+//{
+//    public Microwave(string name, string characteristics) : base(name)
+//    {
+//        Characteristics = characteristics;
+//    }
+
+//    public string Characteristics { get; }
+
+//    public override void Sound()
+//    {
+//        Console.WriteLine($"{Characteristics} microwave beeps.");
+//    }
+
+//    public override void Desc()
+//    {
+//        Console.WriteLine($"Device Description: {Characteristics} microwave.");
+//    }
+//}
+
+//class Car : Device
+//{
+//    public Car(string name, string characteristics) : base(name)
+//    {
+//        Characteristics = characteristics;
+//    }
+
+//    public string Characteristics { get; }
+
+//    public override void Sound()
+//    {
+//        Console.WriteLine($"{Characteristics} car engine roars.");
+//    }
+
+//    public override void Desc()
+//    {
+//        Console.WriteLine($"Device Description: {Characteristics} car.");
+//    }
+//}
+
+//class Ship : Device
+//{
+//    public Ship(string name, string characteristics) : base(name)
+//    {
+//        Characteristics = characteristics;
+//    }
+
+//    public string Characteristics { get; }
+
+//    public override void Sound()
+//    {
+//        Console.WriteLine($"{Characteristics} ship horn blares.");
+//    }
+
+//    public override void Desc()
+//    {
+//        Console.WriteLine($"Device Description: {Characteristics} ship.");
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Device[] devices = new Device[]
+//        {
+//            new Kettle("Electric", "Electric tea"),
+//            new Microwave("Countertop", "Countertop microwave"),
+//            new Car("Sedan", "Sedan car"),
+//            new Ship("Cargo Ship", "Large cargo ship")
+//        };
+
+//        foreach (var device in devices)
+//        {
+//            device.Show();
+//            device.Sound();
+//            device.Desc();
+//            Console.WriteLine();
+//        }
+//    }
+//}
+
+
+////Задание 3
+////Создать базовый класс «Музыкальный инструмент»
+////и производные классы «Скрипка», «Тромбон», «Укулеле»,
+////«Виолончель». С помощью конструктора установить имя
+////каждого музыкального инструмента и его характеристики.
+////Реализуйте для каждого из классов методы:
+////■ Sound — издает звук музыкального инструмента
+////(пишем текстом в консоль);
+////■ Show — отображает название музыкального инструмента;
+////■ Desc — отображает описание музыкального инструмента;
+////■ History — отображает историю создания музыкального инструмента.
+
+
+//using System;
+
+//class MusicalInstrument
+//{
+//    private string name;
+//    private string description;
+//    private string history;
+
+//    public MusicalInstrument(string name, string description, string history)
+//    {
+//        this.name = name;
+//        this.description = description;
+//        this.history = history;
+//    }
+
+//    public void Sound()
+//    {
+//        Console.WriteLine($"{name} makes a sound.");
+//    }
+
+//    public void Show()
+//    {
+//        Console.WriteLine($"Musical Instrument: {name}");
+//    }
+
+//    public void Desc()
+//    {
+//        Console.WriteLine($"Description: {description}");
+//    }
+
+//    public void History()
+//    {
+//        Console.WriteLine($"History: {history}");
+//    }
+//}
+//class Violin : MusicalInstrument
+//{
+//    public Violin(string name, string description, string history)
+//        : base(name, description, history)
+//    {
+//    }
+//}
+
+//class Trombone : MusicalInstrument
+//{
+//    public Trombone(string name, string description, string history)
+//        : base(name, description, history)
+//    {
+//    }
+//}
+
+//class Ukulele : MusicalInstrument
+//{
+//    public Ukulele(string name, string description, string history)
+//        : base(name, description, history)
+//    {
+//    }
+//}
+
+//class Cello : MusicalInstrument
+//{
+//    public Cello(string name, string description, string history)
+//        : base(name, description, history)
+//    {
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+
+//        MusicalInstrument violin = new Violin("Violin", "A four-stringed instrument played with a bow.", "Originated in Italy in the early 16th century.");
+//        MusicalInstrument trombone = new Trombone("Trombone", "A brass instrument with a slide.", "Developed in the 15th century in Europe.");
+//        MusicalInstrument ukulele = new Ukulele("Ukulele", "A small, four-stringed instrument resembling a guitar.", "Introduced to Hawaii in the late 19th century.");
+//        MusicalInstrument cello = new Cello("Cello", "A large, bowed string instrument.", "Evolved from the viola da gamba in the 17th century.");
+
+//        violin.Show();
+//        violin.Sound();
+//        violin.Desc();
+//        violin.History();
+
+//        Console.WriteLine();
+
+//        trombone.Show();
+//        trombone.Sound();
+//        trombone.Desc();
+//        trombone.History();
+
+//        Console.WriteLine();
+
+//        ukulele.Show();
+//        ukulele.Sound();
+//        ukulele.Desc();
+//        ukulele.History();
+
+//        Console.WriteLine();
+
+//        cello.Show();
+//        cello.Sound();
+//        cello.Desc();
+//        cello.History();
+//    }
+//}
+
+
+
+
+
+
+
+
+
+////Задание 4
+////Создать абстрактный базовый класс Worker (работника)
+////с методом Print(). Создайте четыре производных класса:
+////President, Security, Manager, Engineer. Переопределите метод
+////Print() для вывода информации, соответствующей
+////каждому типу работника
+
+//using System;
+
+//abstract class Worker
+//{
+//    public abstract void Print();
+//}
+//class President : Worker
+//{
+//    public override void Print()
+//    {
+//        Console.WriteLine("Worker Type: President");
+//        Console.WriteLine("Responsibilities: Leads the company");
+//        Console.WriteLine("Perks: Decides the company's overal strategy.");
+//    }
+//}
+//class Security : Worker
+//{
+//    public override void Print()
+//    {
+//        Console.WriteLine("Worker Type: Security");
+//        Console.WriteLine("Responsibilities: Ensures the safety and security of the premises.");
+//        Console.WriteLine("Perks: Monitors access control and surveillance.");
+//    }
+//}
+
+//class Manager : Worker
+//{
+//    public override void Print()
+//    {
+//        Console.WriteLine("Worker Type: Manager");
+//        Console.WriteLine("Responsibilities: Manages and oversees specific areas.");
+//        Console.WriteLine("Perks: Makes decisions related to team performance a.");
+//    }
+//}
+//class Engineer : Worker
+//{
+//    public override void Print()
+//    {
+//        Console.WriteLine("Worker Type: Engineer");
+//        Console.WriteLine("Responsibilities: Designs and develops technical solutions.");
+//        Console.WriteLine("Perks: Works on innovative projects and solves technical challenges.");
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Worker president = new President();
+//        Worker security = new Security();
+//        Worker manager = new Manager();
+//        Worker engineer = new Engineer();
+
+//        Console.WriteLine("Worker Information:");
+//        Console.WriteLine("--------------------------------------------");
+
+//        Console.WriteLine("\nPresident Information:");
+//        president.Print();
+
+//        Console.WriteLine("\nSecurity Information:");
+//        security.Print();
+
+//        Console.WriteLine("\nManager Information:");
+//        manager.Print();
+
+//        Console.WriteLine("\nEngineer Information:");
+//        engineer.Print();
+//    }
+//}
