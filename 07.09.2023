@@ -1,0 +1,215 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
+
+class Product
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public DateTime ProductionDate { get; set; }
+    public DateTime ExpiresOn { get; set; }
+    public double BruttoWeight { get; set; }
+    public double NettoWeight { get; set; }
+}
+
+class Barn
+{
+    private List<Product> products = new List<Product>();
+    private string storageFilePath = "products.json";
+
+    public void LoadProducts()
+    {
+        if (File.Exists(storageFilePath))
+        {
+            string json = File.ReadAllText(storageFilePath);
+            products = JsonConvert.DeserializeObject<List<Product>>(json);
+        }
+    }
+
+    public void SaveProducts()
+    {
+        string json = JsonConvert.SerializeObject(products);
+        File.WriteAllText(storageFilePath, json);
+    }
+
+    public void AddProduct(Product product)
+    {
+        product.ID = GetNextProductID();
+        products.Add(product);
+        SaveProducts();
+    }
+
+    public void EditProduct(int id, Product updatedProduct)
+    {
+        Product productToEdit = products.Find(p => p.ID == id);
+        if (productToEdit != null)
+        {
+            productToEdit.Name = updatedProduct.Name;
+            productToEdit.ProductionDate = updatedProduct.ProductionDate;
+            productToEdit.ExpiresOn = updatedProduct.ExpiresOn;
+            productToEdit.BruttoWeight = updatedProduct.BruttoWeight;
+            productToEdit.NettoWeight = updatedProduct.NettoWeight;
+            SaveProducts();
+        }
+        else
+        {
+            Console.WriteLine("Product not found.");
+        }
+    }
+
+    public void RemoveProduct(int id)
+    {
+        Product productToRemove = products.Find(p => p.ID == id);
+        if (productToRemove != null)
+        {
+            products.Remove(productToRemove);
+            SaveProducts();
+        }
+        else
+        {
+            Console.WriteLine("Product not found.");
+        }
+    }
+
+    public void ShowAllProducts()
+    {
+        foreach (var product in products)
+        {
+            Console.WriteLine($"ID: {product.ID}");
+            Console.WriteLine($"Name: {product.Name}");
+            Console.WriteLine($"Production Date: {product.ProductionDate}");
+            Console.WriteLine($"Expires On: {product.ExpiresOn}");
+            Console.WriteLine($"Brutto Weight: {product.BruttoWeight}");
+            Console.WriteLine($"Netto Weight: {product.NettoWeight}");
+            Console.WriteLine();
+        }
+    }
+
+    private int GetNextProductID()
+    {
+        if (products.Count == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return products[products.Count - 1].ID + 1;
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Barn barn = new Barn();
+        barn.LoadProducts();
+
+        while (true)
+        {
+            Console.WriteLine("Barn - Product Storage");
+            Console.WriteLine("1. Add Product");
+            Console.WriteLine("2. Edit Product");
+            Console.WriteLine("3. Remove Product");
+            Console.WriteLine("4. Show All Products");
+            Console.WriteLine("5. Exit");
+            Console.Write("Enter your choice: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        Product newProduct = new Product();
+                        Console.Write("Name: ");
+                        newProduct.Name = Console.ReadLine();
+                        Console.Write("Production Date (YYYY-MM-DD): ");
+                        if (DateTime.TryParse(Console.ReadLine(), out DateTime productionDate))
+                        {
+                            newProduct.ProductionDate = productionDate;
+                        }
+                        Console.Write("Expires On (YYYY-MM-DD): ");
+                        if (DateTime.TryParse(Console.ReadLine(), out DateTime expiresOn))
+                        {
+                            newProduct.ExpiresOn = expiresOn;
+                        }
+                        Console.Write("Brutto Weight: ");
+                        if (double.TryParse(Console.ReadLine(), out double bruttoWeight))
+                        {
+                            newProduct.BruttoWeight = bruttoWeight;
+                        }
+                        Console.Write("Netto Weight: ");
+                        if (double.TryParse(Console.ReadLine(), out double nettoWeight))
+                        {
+                            newProduct.NettoWeight = nettoWeight;
+                        }
+                        barn.AddProduct(newProduct);
+                        Console.WriteLine("Product added successfully.");
+                        break;
+                    case 2:
+                        Console.Write("Enter the ID of the product to edit: ");
+                        if (int.TryParse(Console.ReadLine(), out int editID))
+                        {
+                            Product editedProduct = new Product();
+                            Console.Write("Name: ");
+                            editedProduct.Name = Console.ReadLine();
+                            Console.Write("Production Date (YYYY-MM-DD): ");
+                            if (DateTime.TryParse(Console.ReadLine(), out DateTime editedProductionDate))
+                            {
+                                editedProduct.ProductionDate = editedProductionDate;
+                            }
+                            Console.Write("Expires On (YYYY-MM-DD): ");
+                            if (DateTime.TryParse(Console.ReadLine(), out DateTime editedExpiresOn))
+                            {
+                                editedProduct.ExpiresOn = editedExpiresOn;
+                            }
+                            Console.Write("Brutto Weight: ");
+                            if (double.TryParse(Console.ReadLine(), out double editedBruttoWeight))
+                            {
+                                editedProduct.BruttoWeight = editedBruttoWeight;
+                            }
+                            Console.Write("Netto Weight: ");
+                            if (double.TryParse(Console.ReadLine(), out double editedNettoWeight))
+                            {
+                                editedProduct.NettoWeight = editedNettoWeight;
+                            }
+                            barn.EditProduct(editID, editedProduct);
+                            Console.WriteLine("Product edited successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
+                        break;
+                    case 3:
+                        Console.Write("Enter the ID of the product to remove: ");
+                        if (int.TryParse(Console.ReadLine(), out int removeID))
+                        {
+                            barn.RemoveProduct(removeID);
+                            Console.WriteLine("Product removed successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
+                        break;
+                    case 4:
+                        barn.ShowAllProducts();
+                        break;
+                    case 5:
+                        barn.SaveProducts();
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a numeric choice.");
+            }
+        }
+    }
+}
