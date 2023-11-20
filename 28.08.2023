@@ -1,0 +1,514 @@
+////Задание 1
+////Объявить одномерный (5 элементов) массив с именем A и двумерный массив (3 строки, 4 столбца) дробных чисел с именем B. Заполнить одномерный массив
+////А числами, введенными с клавиатуры пользователем, а
+////двумерный массив В случайными числами с помощью
+////циклов. Вывести на экран значения массивов: массива
+////А в одну строку, массива В — в виде матрицы. Найти в
+////данных массивах общий максимальный элемент, минимальный элемент, общую сумму всех элементов, общее
+////произведение всех элементов, сумму четных элементов
+////массива А, сумму нечетных столбцов массива В.
+/////----------------------------------------------------------------------
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        double[] A = new double[5];
+//        Console.WriteLine("Enter 5 elements of massiv A:");
+//        for (int i = 0; i < 5; i++)
+//        {
+//            A[i] = Convert.ToDouble(Console.ReadLine());
+//        }
+//        double[,] B = new double[3, 4];
+//        Random random = new Random();
+//        Console.WriteLine("Masiv B(random numbers:");
+//        for (int i = 0; i < 3; i++)
+//        {
+//            for (int j = 0; j < 4; j++)
+//            {
+//                B[i, j] = random.NextDouble();
+//                Console.Write(B[i, j] + "\t");
+//            }
+//            Console.WriteLine();
+//        }
+//        double maxA = A[0];
+//        double maxB = B[0, 0];
+//        for (int i = 0; i < 5; i++)
+//        {
+//            if (A[i] > maxA)
+//                maxA = A[i];
+//        }
+//        for (int i = 0; i < 3; i++)
+//        {
+//            for (int j = 0; j < 4; j++)
+//            {
+//                if (B[i, j] > maxB)
+//                    maxB = B[i, j];
+//            }
+//        }
+//        Console.WriteLine($"Maks item: {Math.Max(maxA, maxB)}");
+//        double minA = A[0];
+//        double minB = B[0, 0];
+//        for (int i = 0; i < 5; i++)
+//        {
+//            if (A[i] < minA)
+//                minA = A[i];
+//        }
+//        for (int i = 0; i < 3; i++)
+//        {
+//            for (int j = 0; j < 4; j++)
+//            {
+//                if (B[i, j] < minB)
+//                    minB = B[i, j];
+//            }
+//        }
+//        Console.WriteLine($"Min item: {Math.Min(minA, minB)}");
+
+//        double sumA = 0;
+//        double sumB = 0;
+//        for (int i = 0; i < 5; i++)
+//        {
+//            sumA += A[i];
+//        }
+//        for (int i = 0; i < 3; i++)
+//        {
+//            for (int j = 0; j < 4; j++)
+//            {
+//                sumB += B[i, j];
+//            }
+//        }
+//        Console.WriteLine($"Total summ of items: {sumA + sumB}");
+//        double productA = 1;
+//        double productB = 1;
+//        for (int i = 0; i < 5; i++)
+//        {
+//            productA *= A[i];
+//        }
+//        for (int i = 0; i < 3; i++)
+//        {
+//            for (int j = 0; j < 4; j++)
+//            {
+//                productB *= B[i, j];
+//            }
+//        }
+//        Console.WriteLine($"Total multiplication in total: {productA * productB}");
+//        double evenSumA = 0;
+//        for (int i = 0; i < 5; i++)
+//        {
+//            if (A[i] % 2 == 0)
+//                evenSumA += A[i];
+//        }
+//        Console.WriteLine($"Total summ of even items maasiv A: {evenSumA}");
+//        double oddColumnSumB = 0;
+//        for (int j = 0; j < 4; j++)
+//        {
+//            for (int i = 0; i < 3; i++)
+//            {
+//                if (j % 2 != 0)
+//                    oddColumnSumB += B[i, j];
+//            }
+//        }
+//        Console.WriteLine($"Total summ of odd items maasiv B: {oddColumnSumB}");
+//    }
+//}
+
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+////Задание 2
+////Дан двумерный массив размерностью 5×5, заполненный случайными числами из диапазона от –100 до 100.
+////Определить сумму элементов массива, расположенных
+////между минимальным и максимальным элементами.
+
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int rows = 5;
+
+//        int cols = 7;
+//        Random rnd = new Random();
+//        int[,]dvummass = new int[rows, cols];
+//        for (int i = 0; i < rows; i++)
+//        {
+//            for (int j = 0; j < cols; j++)
+//            {
+//                dvummass[i, j] = rnd.Next(-100,101);
+//            }
+//        }
+//        Console.WriteLine("Dvumerniy massiv: ");
+//        for (int i = 0;i < rows; i++)
+//        {
+//            for(int j = 0;j < cols; j++)
+//            {
+//                Console.WriteLine(dvummass[i, j] + "\t");
+//            }
+//            Console.WriteLine();
+//        }
+//        int min_elemenet = dvummass[0, 0];
+//        int maks_element = dvummass[0, 0];
+//        int min_indeks_row = 0;
+//        int maks_indeks_row = 0;
+//        int min_indeks_col = 0;
+//        int maks_indeks_col = 0;
+//        for (int i = 0;i < rows;i++)
+//        {
+//            for (int j = 0; j < cols; j++)
+//            {
+//                if (dvummass[i,j] < min_elemenet)
+//                {
+//                    min_elemenet = dvummass[i,j];
+//                    min_indeks_row = i;
+//                    min_indeks_col = j;
+//                }
+//                if (dvummass[i,j]>maks_element)
+//                {
+//                    maks_element = dvummass[i,j];
+//                    maks_indeks_row = i;
+//                    maks_indeks_col = j;
+//                }
+//            }
+//        }
+//        int sum = 0;
+//        for (int i = Math.Min(min_indeks_row, maks_indeks_row) + 1;
+//             i < Math.Max(min_indeks_row, maks_indeks_row); i++)
+//        {
+//            for (int j = Math.Min(min_indeks_row, maks_indeks_row) + 1;
+//                 j < Math.Max(min_indeks_row, maks_indeks_row); j++)
+//            {
+//                sum += dvummass[i, j];
+//            }
+//        }
+//        Console.WriteLine($"Summ of the num between min and max is: {sum}");
+
+//    }
+//}
+
+
+
+
+//-----------------------------------------------------------------------------------------
+////Задание 3
+////Пользователь вводит строку с клавиатуры. Необходимо зашифровать данную строку используя шифр Цезаря.
+////Из Википедии:
+////ДОМАШНЕЕ ЗАДАНИЕ
+////1
+////Шифр Цезаря — это вид шифра подстановки, в котором каждый символ в открытом тексте заменяется
+////символом, находящимся на некотором постоянном числе
+////позиций левее или правее него в алфавите. Например,
+////в шифре со сдвигом вправо на 3, A была бы заменена на
+////D, B станет E, и так далее.
+////Подробнее тут: https://en.wikipedia.org/wiki/Caesar_
+////cipher.
+//using System;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.WriteLine("Enter a string for encryption:");
+//        string inputString = Console.ReadLine();
+
+//        Console.WriteLine("Enter the shift value (an integer):");
+//        int shift = Convert.ToInt32(Console.ReadLine());
+
+//        string encryptedString = Encrypt(inputString, shift);
+//        string decryptedString = Decrypt(encryptedString, shift);
+
+//        Console.WriteLine("Encrypted string: " + encryptedString);
+//        Console.WriteLine("Decrypted string: " + decryptedString);
+//    }
+
+//    static string Encrypt(string input, int shift)
+//    {
+//        char[] chars = input.ToCharArray();
+
+//        for (int i = 0; i < chars.Length; i++)
+//        {
+//            if (char.IsLetter(chars[i]))
+//            {
+//                char baseChar = char.IsUpper(chars[i]) ? 'A' : 'a';
+//                chars[i] = (char)(((chars[i] - baseChar + shift) % 26) + baseChar);
+//            }
+//        }
+
+//        return new string(chars);
+//    }
+
+//    static string Decrypt(string input, int shift)
+//    {
+//        return Encrypt(input, 26 - shift);
+//    }
+//}
+
+
+
+////-------------------------------------------------------------------------------------------------------------
+////Задание 4
+////Создайте приложение, которое производит операции
+////над матрицами:
+////■ Умножение матрицы на число;
+////■ Сложение матриц;
+////■ Произведение матриц.
+
+//using System;
+
+//class MatrixOperations
+//{
+//    static void Main()
+//    {
+//        Console.WriteLine("Enter the number of rows for the first matrix:");
+//        int rowsA = int.Parse(Console.ReadLine());
+
+//        Console.WriteLine("Enter the number of columns for the first matrix:");
+//        int columnsA = int.Parse(Console.ReadLine());
+
+//        Console.WriteLine("Enter the number of rows for the second matrix:");
+//        int rowsB = int.Parse(Console.ReadLine());
+
+//        Console.WriteLine("Enter the number of columns for the second matrix:");
+//        int columnsB = int.Parse(Console.ReadLine());
+
+//        if (columnsA != rowsB)
+//        {
+//            Console.WriteLine("Matrix multiplication is not possible. The number of columns in the first matrix should be equal to the number of rows in the second matrix.");
+//        }
+//        else
+//        {
+//            double[,] matrixA = InputMatrix(rowsA, columnsA, "first");
+//            double[,] matrixB = InputMatrix(rowsB, columnsB, "second");
+//            Console.WriteLine("1. Multiply matrix by scalar");
+//            Console.WriteLine("2. Add matrices");
+//            Console.WriteLine("3. Multiply matrices");
+
+//            int choice = int.Parse(Console.ReadLine());
+
+//            switch (choice)
+//            {
+//                case 1:
+//                    Console.WriteLine("Enter the scalar value:");
+//                    double scalar = double.Parse(Console.ReadLine());
+//                    double[,] resultScalar = MultiplyMatrixByScalar(matrixA, scalar);
+//                    PrintMatrix(resultScalar);
+//                    break;
+//                case 2:
+//                    if (rowsA == rowsB && columnsA == columnsB)
+//                    {
+//                        double[,] resultSum = AddMatrices(matrixA, matrixB);
+//                        PrintMatrix(resultSum);
+//                    }
+//                    else
+//                    {
+//                        Console.WriteLine("Matrix addition is not possible. Matrices must have the same dimensions.");
+//                    }
+//                    break;
+//                case 3:
+//                    double[,] resultProduct = MultiplyMatrices(matrixA, matrixB);
+//                    PrintMatrix(resultProduct);
+//                    break;
+//                default:
+//                    Console.WriteLine("Invalid operation choice.");
+//                    break;
+//            }
+//        }
+//    }
+
+//    static double[,] InputMatrix(int rows, int columns, string matrixName)
+//    {
+//        Console.WriteLine($"Enter the elements of the {matrixName} matrix ({rows}x{columns}):");
+//        double[,] matrix = new double[rows, columns];
+//        for (int i = 0; i < rows; i++)
+//        {
+//            string[] rowElements = Console.ReadLine().Split(' ');
+//            for (int j = 0; j < columns; j++)
+//            {
+//                matrix[i, j] = double.Parse(rowElements[j]);
+//            }
+//        }
+//        return matrix;
+//    }
+
+//    static void PrintMatrix(double[,] matrix)
+//    {
+//        int rows = matrix.GetLength(0);
+//        int columns = matrix.GetLength(1);
+
+//        Console.WriteLine("Result:");
+//        for (int i = 0; i < rows; i++)
+//        {
+//            for (int j = 0; j < columns; j++)
+//            {
+//                Console.Write(matrix[i, j] + " ");
+//            }
+//            Console.WriteLine();
+//        }
+//    }
+
+//    static double[,] MultiplyMatrixByScalar(double[,] matrix, double scalar)
+//    {
+//        int rows = matrix.GetLength(0);
+//        int columns = matrix.GetLength(1);
+//        double[,] result = new double[rows, columns];
+
+//        for (int i = 0; i < rows; i++)
+//        {
+//            for (int j = 0; j < columns; j++)
+//            {
+//                result[i, j] = matrix[i, j] * scalar;
+//            }
+//        }
+
+//        return result;
+//    }
+
+//    static double[,] AddMatrices(double[,] matrixA, double[,] matrixB)
+//    {
+//        int rows = matrixA.GetLength(0);
+//        int columns = matrixA.GetLength(1);
+//        double[,] result = new double[rows, columns];
+
+//        for (int i = 0; i < rows; i++)
+//        {
+//            for (int j = 0; j < columns; j++)
+//            {
+//                result[i, j] = matrixA[i, j] + matrixB[i, j];
+//            }
+//        }
+
+//        return result;
+//    }
+
+//    static double[,] MultiplyMatrices(double[,] matrixA, double[,] matrixB)
+//    {
+//        int rowsA = matrixA.GetLength(0);
+//        int columnsA = matrixA.GetLength(1);
+//        int rowsB = matrixB.GetLength(0);
+//        int columnsB = matrixB.GetLength(1);
+//        double[,] result = new double[rowsA, columnsB];
+
+//        for (int i = 0; i < rowsA; i++)
+//        {
+//            for (int j = 0; j < columnsB; j++)
+//            {
+//                for (int k = 0; k < columnsA; k++)
+//                {
+//                    result[i, j] += matrixA[i, k] * matrixB[k, j];
+//                }
+//            }
+//        }
+
+//        return result;
+//    }
+//}
+
+
+
+//------------------------------------------------------------------------------------------
+////Задание 5
+////Пользователь с клавиатуры вводит в строку арифметическое выражение. Приложение должно посчитать
+////его результат. Необходимо поддерживать только две
+////операции: +и –.
+//using System;
+
+//class Calculator
+//{
+//    static void Main()
+//    {
+//        Console.WriteLine("Enter arithmetic expression:");
+//        string input = Console.ReadLine();
+
+//        double result = Calcul(input);
+
+//        Console.WriteLine($"Result: {result}");
+//    }
+//    static double Calcul(string expression)
+//    {
+//        string[] parts = expression.Split(' ');
+//        double currentResult = 0;
+//        char currentOperator = '+';
+//        bool isAdding = true;
+
+//        foreach (string part in parts)
+//        {
+//            if (part == "+")
+//            {
+//                isAdding = true;
+//            }
+//            else if (part == "-")
+//            {
+//                isAdding = false;
+//            }
+//            else
+//            {
+//                double operand = double.Parse(part);
+//                if (isAdding)
+//                {
+//                    if (currentOperator == '+')
+//                    {
+//                        currentResult += operand;
+//                    }
+//                    else
+//                    {
+//                        currentResult -= operand;
+//                    }
+//                }
+//                else
+//                {
+//                    if (currentOperator == '+')
+//                    {
+//                        currentResult += operand;
+//                    }
+//                    else
+//                    {
+//                        currentResult -= operand;
+//                    }
+//                }
+//            }
+//        }
+
+//        return currentResult;
+//    }
+//}
+
+
+
+////zadaniye 6,7 u menya ne ocen polucilos
+////6 toye ya kak to sdelala tak a 7 ne ocen polucilos
+////
+//using System;
+
+//class CaseConverter
+//{
+//    static void Main()
+//    {
+//        Console.WriteLine("Enter text:");
+//        string inputText = Console.ReadLine();
+
+//        string[] sentences = inputText.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+
+//        foreach (string sentence in sentences)
+//        {
+//            string[] words = sentence.Trim().Split(' ');
+//            for (int i = 0; i < words.Length; i++)
+//            {
+//                if (!string.IsNullOrWhiteSpace(words[i]))
+//                {
+//                    char[] wordChars = words[i].ToCharArray();
+//                    if (wordChars.Length > 0)
+//                    {
+//                        wordChars[0] = char.ToUpper(wordChars[0]);
+//                        words[i] = new string(wordChars);
+//                    }
+//                }
+//            }
+//            string modifiedSentence = string.Join(" ", words);
+//            Console.Write(modifiedSentence + ". ");
+//        }
+//    }
+//}
