@@ -1,0 +1,473 @@
+////Задание 1
+////Напишите метод, который отображает квадрат из
+////некоторого символа. Метод принимает в качестве параметра: длину стороны квадрата, символ.
+//using System;
+
+//class SquareDrawer
+//{
+//    static void Main()
+//    {
+//        Console.WriteLine("Enter the side of the square:");
+//        int sideLength = int.Parse(Console.ReadLine());
+
+//        Console.WriteLine("Enter the character :");
+//        char character = char.Parse(Console.ReadLine());
+
+//        DrawSquare(sideLength, character);
+//    }
+
+//    static void DrawSquare(int sideLength, char character)
+//    {
+//        for (int i = 0; i < sideLength; i++)
+//        {
+//            for (int j = 0; j < sideLength; j++)
+//            {
+//                Console.Write(character);
+//            }
+//            Console.WriteLine();
+//        }
+//    }
+//}
+
+
+//Задание 2
+//Напишите метод, который проверяет является ли
+//переданное число «палиндромом». Число передаётся в
+//качестве параметра. Если число палиндром нужно вернуть из метода true, иначе false.
+//Палиндром — число, которое читается одинаково как
+//справа налево, так и слева направо. Например:
+//1221 — палиндром;
+//3443 — палиндром;
+//7854 — не палиндром
+using System;
+
+//class PalindromeChecker
+//{
+//    static void Main()
+//    {
+//        Console.WriteLine("Enter  number to check:");
+//        int number = int.Parse(Console.ReadLine());
+
+//        bool isPalindrome = IsPalindrome(number);
+
+//        if (isPalindrome)
+//        {
+//            Console.WriteLine("The number is a palindrome.");
+//        }
+//        else
+//        {
+//            Console.WriteLine("The number is not a palindrome.");
+//        }
+//    }
+
+//    static bool IsPalindrome(int number)
+//    {
+//        int originalNumber = number;
+//        int reversedNumber = 0;
+
+//        while (number > 0)
+//        {
+//            int remainder = number % 10;
+//            reversedNumber = reversedNumber * 10 + remainder;
+//            number /= 10;
+//        }
+
+//        return originalNumber == reversedNumber;
+//    }
+//}
+
+
+
+////Задание 3
+////Напишите метод, фильтрующий массив на основании
+////переданных параметров. Метод принимает параметры:
+////оригинальный_массив, массив_с_данными_для_фильтрации.
+////Метод возвращает оригинальный массив без элементов, которые есть в массиве для фильтрации.
+////Например:
+////1 2 6 - 1 88 7 6 — оригинальный массив;
+////6 88 7 — массив для фильтрации;
+////1 2 - 1 — результат работы метода.
+
+
+//// ya v internete smotrela ewe mojno sdelat s using System.Linq; no ne sdelala potomu cto ne ocen ponala
+//using System;
+
+//class ArrayFilter
+//{
+//    static void Main()
+//    {
+//        int[] originalArray = { 1, 2, 6, -1, 88, 7, 6 };
+//        int[] filterArray = { 6, 88, 7 };
+
+//        int[] resultArray = FilterArray(originalArray, filterArray);
+
+//        Console.WriteLine("Original Array:");
+//        Print(originalArray);
+
+//        Console.WriteLine("Filter Array:");
+//        Print(filterArray);
+
+//        Console.WriteLine("Result Array:");
+//        Print(resultArray);
+//    }
+
+//    static int[] FilterArray(int[] originalArray, int[] filterArray)
+//    {
+//        int[] result = new int[originalArray.Length];
+//        int resultIndex = 0;
+
+//        foreach (int item in originalArray)
+//        {
+//            if (!ArrayContains(filterArray, item))
+//            {
+//                result[resultIndex] = item;
+//                resultIndex++;
+//            }
+//        }
+//        Array.Resize(ref result, resultIndex);
+
+//        return result;
+//    }
+
+//    static bool ArrayContains(int[] array, int value)
+//    {
+//        foreach (int item in array)
+//        {
+//            if (item == value)
+//            {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+//    static void Print(int[] array)
+//    {
+//        foreach (int item in array)
+//        {
+//            Console.Write(item + " ");
+//        }
+//        Console.WriteLine();
+//    }
+//}
+
+
+
+
+
+////Задание 4
+////Создайте класс «Веб-сайт». Необходимо хранить в
+////полях класса: название сайта, путь к сайту, описание
+////сайта, ip адрес сайта. Реализуйте методы класса для ввода
+////данных, вывода данных, реализуйте доступ к отдельным
+////полям через методы класса.
+
+//using System;
+
+//class Website
+//{
+//    private string name;
+//    private string url;
+//    private string description;
+//    private string ipAddress;
+
+//    public void SetName(string newName)
+//    {
+//        name = newName;
+//    }
+
+//    public string GetName()
+//    {
+//        return name;
+//    }
+
+//    public void SetUrl(string newUrl)
+//    {
+//        url = newUrl;
+//    }
+
+//    public string GetUrl()
+//    {
+//        return url;
+//    }
+
+//    public void SetDescription(string newDescription)
+//    {
+//        description = newDescription;
+//    }
+
+//    public string GetDescription()
+//    {
+//        return description;
+//    }
+
+//    public void SetIpAddress(string newIpAddress)
+//    {
+//        ipAddress = newIpAddress;
+//    }
+
+//    public string GetIpAddress()
+//    {
+//        return ipAddress;
+//    }
+
+//    public void InputData()
+//    {
+//        Console.WriteLine("Enter website details:");
+//        Console.Write("Name: ");
+//        name = Console.ReadLine();
+
+//        Console.Write("URL: ");
+//        url = Console.ReadLine();
+
+//        Console.Write("Description: ");
+//        description = Console.ReadLine();
+
+//        Console.Write("IP Address: ");
+//        ipAddress = Console.ReadLine();
+//    }
+
+//    public void DisplayData()
+//    {
+//        Console.WriteLine("Website Details:");
+//        Console.WriteLine($"Name: {name}");
+//        Console.WriteLine($"URL: {url}");
+//        Console.WriteLine($"Description: {description}");
+//        Console.WriteLine($"IP Address: {ipAddress}");
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Website myWebsite = new Website();
+//        myWebsite.InputData();
+//        Console.WriteLine();
+//        myWebsite.DisplayData();
+//    }
+//}
+
+
+
+
+////Задание 5
+////Создайте класс «Журнал». Необходимо хранить в
+////полях класса: название журнала, год основания, описание журнала, контактный телефон, контактный e-mail.
+////Реализуйте методы класса для ввода данных, вывода
+////данных, реализуйте доступ к отдельным полям через
+////методы класса.
+
+//using System;
+
+//class Magazine
+//{
+//    private string name;
+//    private int yearFoundation;
+//    private string description;
+//    private string contactPhone;
+//    private string contactEmail;
+
+//    public void SetName(string newName)
+//    {
+//        name = newName;
+//    }
+
+//    public string GetName()
+//    {
+//        return name;
+//    }
+
+//    public void SetYearFoundation(int newYear)
+//    {
+//        yearFoundation = newYear;
+//    }
+
+//    public int GetYearFoundation()
+//    {
+//        return yearFoundation;
+//    }
+
+//    public void SetDescription(string newDescription)
+//    {
+//        description = newDescription;
+//    }
+
+//    public string GetDescription()
+//    {
+//        return description;
+//    }
+
+//    public void SetContactPhone(string newPhone)
+//    {
+//        contactPhone = newPhone;
+//    }
+
+//    public string GetContactPhone()
+//    {
+//        return contactPhone;
+//    }
+
+//    public void SetContactEmail(string newEmail)
+//    {
+//        contactEmail = newEmail;
+//    }
+
+//    public string GetContactEmail()
+//    {
+//        return contactEmail;
+//    }
+
+//    public void InputData()
+//    {
+//        Console.WriteLine("Enter magazine details:");
+//        Console.Write("Name: ");
+//        name = Console.ReadLine();
+
+//        Console.Write("Year of Foundation: ");
+//        yearFoundation = int.Parse(Console.ReadLine());
+
+//        Console.Write("Description: ");
+//        description = Console.ReadLine();
+
+//        Console.Write("Contact Phone: ");
+//        contactPhone = Console.ReadLine();
+
+//        Console.Write("Contact Email: ");
+//        contactEmail = Console.ReadLine();
+//    }
+
+//    public void DisplayData()
+//    {
+//        Console.WriteLine("Magazine Details:");
+//        Console.WriteLine($"Name: {name}");
+//        Console.WriteLine($"Year of Foundation: {yearFoundation}");
+//        Console.WriteLine($"Description: {description}");
+//        Console.WriteLine($"Contact Phone: {contactPhone}");
+//        Console.WriteLine($"Contact Email: {contactEmail}");
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Magazine myMagazine = new Magazine();
+//        myMagazine.InputData();
+//        Console.WriteLine();
+//        myMagazine.DisplayData();
+//    }
+//}
+
+
+
+
+
+////Задание 6
+////Создайте класс «Магазин». Необходимо хранить в
+////полях класса: название магазина, адрес, описание профиля магазина, контактный телефон, контактный e-mail.
+////Реализуйте методы класса для ввода данных, вывода
+////данных, реализуйте доступ к отдельным полям через
+////методы класса.
+
+
+//using System;
+
+//class Store
+//{
+//    private string name;
+//    private string address;
+//    private string profileDescription;
+//    private string contactPhone;
+//    private string contactEmail;
+
+//    public void SetName(string newName)
+//    {
+//        name = newName;
+//    }
+
+//    public string GetName()
+//    {
+//        return name;
+//    }
+
+//    public void SetAddress(string newAddress)
+//    {
+//        address = newAddress;
+//    }
+
+//    public string GetAddress()
+//    {
+//        return address;
+//    }
+
+//    public void SetProfileDescription(string newDescription)
+//    {
+//        profileDescription = newDescription;
+//    }
+
+//    public string GetProfileDescription()
+//    {
+//        return profileDescription;
+//    }
+
+//    public void SetContactPhone(string newPhone)
+//    {
+//        contactPhone = newPhone;
+//    }
+
+//    public string GetContactPhone()
+//    {
+//        return contactPhone;
+//    }
+
+//    public void SetContactEmail(string newEmail)
+//    {
+//        contactEmail = newEmail;
+//    }
+
+//    public string GetContactEmail()
+//    {
+//        return contactEmail;
+//    }
+
+//    public void InputData()
+//    {
+//        Console.WriteLine("Enter store details:");
+//        Console.Write("Name: ");
+//        name = Console.ReadLine();
+
+//        Console.Write("Address: ");
+//        address = Console.ReadLine();
+
+//        Console.Write("Profile Description: ");
+//        profileDescription = Console.ReadLine();
+
+//        Console.Write("Contact Phone: ");
+//        contactPhone = Console.ReadLine();
+
+//        Console.Write("Contact Email: ");
+//        contactEmail = Console.ReadLine();
+//    }
+
+//    public void DisplayData()
+//    {
+//        Console.WriteLine("Store Details:");
+//        Console.WriteLine($"Name: {name}");
+//        Console.WriteLine($"Address: {address}");
+//        Console.WriteLine($"Profile Description: {profileDescription}");
+//        Console.WriteLine($"Contact Phone: {contactPhone}");
+//        Console.WriteLine($"Contact Email: {contactEmail}");
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Store myStore = new Store();
+//        myStore.InputData();
+//        Console.WriteLine();
+//        myStore.DisplayData();
+//    }
+//}
