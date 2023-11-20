@@ -1,0 +1,389 @@
+////Задание 1
+////Ранее в одном из практических заданий вы создавали
+////класс «Журнал». Добавьте к уже созданному классу информацию о количестве сотрудников. Выполните перегрузку
+////+ (для увеличения количества сотрудников на указанную
+////величину), — (для уменьшения количества сотрудников
+////на указанную величину), == (проверка на равенство количества сотрудников), < и > (проверка на меньше или
+////больше количества сотрудников), != и Equals.Используйте
+////механизм свойств для полей класса.
+
+
+
+
+//using System;
+
+//class Journal
+//{
+//    private int numberOfEmployes;
+
+//    public int NumberOfEmployes
+//    {
+//        get { return numberOfEmployes; }
+//        set
+//        {
+//            if (value >= 0)
+//                numberOfEmployes = value;
+//            else
+//                throw new ArgumentException("Number cannot be negative");
+//        }
+//    }
+
+//    public Journal(int numberOfEmployees)
+//    {
+//        NumberOfEmployes = numberOfEmployees;
+//    }
+//    public static Journal operator +(Journal journal, int value)
+//    {
+//        return new Journal(journal.NumberOfEmployes + value);
+//    }
+//    public static Journal operator -(Journal journal, int value)
+//    {
+//        return new Journal(journal.NumberOfEmployes - value);
+//    }
+
+//    public static bool operator ==(Journal journal1, Journal journal2)
+//    {
+//        return journal1.NumberOfEmployes == journal2.NumberOfEmployes;
+//    }
+
+//    public static bool operator !=(Journal journal1, Journal journal2)
+//    {
+//        return journal1.NumberOfEmployes != journal2.NumberOfEmployes;
+//    }
+
+//    public static bool operator <(Journal journal1, Journal journal2)
+//    {
+//        return journal1.NumberOfEmployes < journal2.NumberOfEmployes;
+//    }
+
+//    public static bool operator >(Journal journal1, Journal journal2)
+//    {
+//        return journal1.NumberOfEmployes > journal2.NumberOfEmployes;
+//    public override bool Equals(object obj)
+//    {
+//        if (obj is Journal otherJournal)
+//        {
+//            return NumberOfEmployes == otherJournal.NumberOfEmployes;
+//        }
+//        return false;
+//    }
+//    public override int GetHashCode()
+//    {
+//        return NumberOfEmployes.GetHashCode();
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Journal journal1 = new Journal(10);
+//        Journal journal2 = new Journal(15);
+
+//        Console.WriteLine($"Journal 1: Number of Employees = {journal1.NumberOfEmployes}");
+//        Console.WriteLine($"Journal 2: Number of Employees = {journal2.NumberOfEmployes}");
+
+//        Journal journal3 = journal1 + 5;
+//        Console.WriteLine($"Journal 3 (journal1 + 5): Number of Employees = {journal3.NumberOfEmployes}");
+
+//        Console.WriteLine($"Journal 1 == Journal 2: {journal1 == journal2}");
+//        Console.WriteLine($"Journal 1 != Journal 2: {journal1 != journal2}");
+//        Console.WriteLine($"Journal 1 < Journal 2: {journal1 < journal2}");
+//        Console.WriteLine($"Journal 1 > Journal 2: {journal1 > journal2}");
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////Задание 2
+////Ранее в одном из практических заданий вы создавали класс «Магазин». Добавьте к уже созданному классу
+////информацию о площади магазина. Выполните перегрузку + (для увеличения площади магазина на указанную
+////величину), — (для уменьшения площади магазина на
+////указанную величину), == (проверка на равенство площадей магазинов), < и > (проверка на меньше или больше
+////площади магазина), != и Equals.Используйте механизм
+////свойств для полей класса.
+
+
+
+//using System;
+
+//class Store
+//{
+//    private double storeArea;
+
+//    public double StoreArea
+//    {
+//        get { return storeArea; }
+//        set
+//        {
+//            if (value >= 0)
+//                storeArea = value;
+//            else
+//                throw new ArgumentException("Store area cannot be negative.");
+//        }
+//    }
+
+//    public Store(double storeArea)
+//    {
+//        StoreArea = storeArea;
+//    }
+//    public static Store operator +(Store store, double value)
+//    {
+//        return new Store(store.StoreArea + value);
+//    }
+
+//    public static Store operator -(Store store, double value)
+//    {
+//        return new Store(store.StoreArea - value);
+//    }
+//    public static bool operator ==(Store store1, Store store2)
+//    {
+//        return Math.Abs(store1.StoreArea - store2.StoreArea) < 0.001;
+//    }
+
+//    public static bool operator !=(Store store1, Store store2)
+//    {
+//        return !(store1 == store2);
+//    }
+//    public static bool operator <(Store store1, Store store2)
+//    {
+//        return store1.StoreArea < store2.StoreArea;
+//    }
+//    public static bool operator >(Store store1, Store store2)
+//    {
+//        return store1.StoreArea > store2.StoreArea;
+//    }
+//    public override bool Equals(object obj)
+//    {
+//        if (obj is Store otherStore)
+//        {
+//            return Math.Abs(StoreArea - otherStore.StoreArea) < 0.001;
+//        }
+//        return false;
+//    }
+//    public override int GetHashCode()
+//    {
+//        return StoreArea.GetHashCode();
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Store store1 = new Store(1000.0);
+//        Store store2 = new Store(1500.0);
+
+//        Console.WriteLine($"Store 1: Store Area = {store1.StoreArea} sq.ft.");
+//        Console.WriteLine($"Store 2: Store Area = {store2.StoreArea} sq.ft.");
+
+//        Store store3 = store1 + 500;
+//        Console.WriteLine($"Store 3 (store1 + 500.0): Store Area = {store3.StoreArea} sq.ft.");
+
+//        Console.WriteLine($"Store 1 == Store 2: {store1 == store2}");
+//        Console.WriteLine($"Store 1 != Store 2: {store1 != store2}");
+//        Console.WriteLine($"Store 1 < Store 2: {store1 < store2}");
+//        Console.WriteLine($"Store 1 > Store 2: {store1 > store2}");
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////Задание 3
+////Создайте приложение «Список книг для прочтения».
+////Приложение должно позволять добавлять книги в список, удалять книги из списка, проверять есть ли книга в
+////списке, и т. д. Используйте механизм свойств, перегрузки
+////операторов, индексаторов. 
+
+//using System;
+
+//class ReadingList
+//{
+//    private string[] books;
+//    private int bookCount;
+
+//    public ReadingList(int capacity)
+//    {
+//        books = new string[capacity];
+//        bookCount = 0;
+//    }
+//    public string this[int index]
+//    {
+//        get
+//        {
+//            if (index >= 0 && index < bookCount)
+//            {
+//                return books[index];
+//            }
+//            else
+//            {
+//                throw new IndexOutOfRangeException("Index is out of range.");
+//            }
+//        }
+//    }
+
+//    public int BookCount
+//    {
+//        get { return bookCount; }
+//    }
+
+//    public void AddBook(string book)
+//    {
+//        if (bookCount < books.Length)
+//        {
+//            books[bookCount] = book;
+//            bookCount++;
+//        }
+//        else
+//        {
+//            throw new InvalidOperationException("The reading list is full.");
+//        }
+//    }
+//    public void RemoveBook(string book)
+//    {
+//        for (int i = 0; i < bookCount; i++)
+//        {
+//            if (books[i] == book)
+//            {
+                
+//                for (int j = i; j < bookCount - 1; j++)
+//                {
+//                    books[j] = books[j + 1];
+//                }
+//                books[bookCount - 1] = null; 
+//                bookCount--;
+//                return;
+//            }
+//        }
+//    }
+//    public bool ContainsBook(string book)
+//    {
+//        for (int i = 0; i < bookCount; i++)
+//        {
+//            if (books[i] == book)
+//            {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//    public static ReadingList operator +(ReadingList readingList, string book)
+//    {
+//        readingList.AddBook(book);
+//        return readingList;
+//    }
+//    public static ReadingList operator -(ReadingList readingList, string book)
+//    {
+//        readingList.RemoveBook(book);
+//        return readingList;
+//    }
+//    public static bool operator ==(ReadingList list1, ReadingList list2)
+//    {
+//        if (object.ReferenceEquals(list1, null) || object.ReferenceEquals(list2, null))
+//        {
+//            return false;
+//        }
+
+//        if (list1.bookCount != list2.bookCount)
+//        {
+//            return false;
+//        }
+
+//        for (int i = 0; i < list1.bookCount; i++)
+//        {
+//            if (list1.books[i] != list2.books[i])
+//            {
+//                return false;
+//            }
+//        }
+
+//        return true;
+//    }
+//    public static bool operator !=(ReadingList list1, ReadingList list2)
+//    {
+//        return !(list1 == list2);
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        ReadingList myReadingList = new ReadingList(10);
+
+//        while (true)
+//        {
+//            Console.WriteLine("Reading List Menu:");
+//            Console.WriteLine("1. Add a book");
+//            Console.WriteLine("2. Remove a book");
+//            Console.WriteLine("3. Check if a book is in the list");
+//            Console.WriteLine("4. View all books in the list");
+//            Console.Write("Enter your choice: ");
+
+//            if (int.TryParse(Console.ReadLine(), out int choice))
+//            {
+//                switch (choice)
+//                {
+//                    case 1:
+//                        Console.Write("Enter the book name to add: ");
+//                        string bookToAdd = Console.ReadLine();
+//                        myReadingList += bookToAdd;
+//                        break;
+//                    case 2:
+//                        Console.Write("Enter the book name to remove: ");
+//                        string bookToRemove = Console.ReadLine();
+//                        myReadingList -= bookToRemove;
+//                        break;
+//                    case 3:
+//                        Console.Write("Enter the book name to check: ");
+//                        string bookToCheck = Console.ReadLine();
+//                        bool containsBook = myReadingList.ContainsBook(bookToCheck);
+//                        Console.WriteLine($"The list {(containsBook ? "contains" : "does not contain")} the book.");
+//                        break;
+//                    case 4:
+//                        Console.WriteLine("Books in the reading list:");
+//                        for (int i = 0; i < myReadingList.BookCount; i++)
+//                        {
+//                            Console.WriteLine($"{i + 1}. {myReadingList[i]}");
+//                        }
+//                        break;
+//                    default:
+//                        Console.WriteLine("Invalid enter a valid option.");
+//                        break;
+//                }
+//            }
+//            else
+//            {
+//                Console.WriteLine("Invalid enter a numeric choice.");
+//            }
+//        }
+//    }
+//}
